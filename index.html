@@ -3,146 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaurya Gupta - Software Developer</title>
-    
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Shaurya Gupta | Telemetry Dashboard</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Barlow+Condensed:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
+    <div id="preloader">
+        <div class="lights-container">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+        </div>
+        <div class="loader-text">INITIALIZING SYSTEMS...</div>
+    </div>
+
+    <div class="audio-control" id="audio-btn">
+        <i class="fa-solid fa-volume-xmark"></i> <span>ENGINE OFF</span>
+    </div>
+
     <header>
-        <nav>
-            <a href="#about" class="nav-logo">&lt;SG/&gt;</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#achievements">Achievements</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
+        <nav class="hud-nav">
+            <div class="nav-brand">SG <span class="accent">//</span> DEV_01</div>
+            <div class="nav-items">
+                <a href="#telemetry">TELEMETRY</a>
+                <a href="#projects">PROJECTS</a>
+                <a href="#experience">HISTORY</a>
+                <a href="#skills">SPECS</a>
+                <a href="#contact-form">COMMS</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section id="about" class="hero">
-            
-            <h1>
-                I'm Shaurya Gupta,
-                <br>
-                <span class="typewriter" id="typewriter-text"></span>
-            </h1>
-            
-            <p class="hero-bio">
-                I build <strong>performant</strong>, user-centric applications. I specialize in the Java & Spring ecosystem 
-                and love integrating AI/ML models to create smart, precision-built products.
-            </p>
-            <a href="#projects" class="cta-button">View My Work</a>
+        <section id="telemetry" class="grid-section">
+            <div class="hero-text">
+                <h4 class="sub-head">DRIVER: SHAURYA GUPTA</h4>
+                <h1 class="glitch-text">FULL STACK<br>ENGINEER</h1>
+                <p class="mission-brief">
+                    Building high-performance Java/Spring architecture with AI precision.
+                    <br>Current Status: <span class="status-live">READY TO RACE</span>
+                </p>
+                <div class="cta-group">
+                    <button class="f1-btn" onclick="document.getElementById('projects').scrollIntoView()">DEPLOY PROJECT</button>
+                    <button class="f1-btn outline">VIEW GITHUB</button>
+                </div>
+            </div>
+
+            <div class="stats-container hud-panel">
+                <div class="panel-header">
+                    <span>DRIVER_STATS</span>
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <canvas id="radarChart" width="400" height="400"></canvas>
+                <div class="stat-legend">
+                    <span><span class="dot backend"></span>BACKEND</span>
+                    <span><span class="dot ai"></span>AI / ML</span>
+                    <span><span class="dot frontend"></span>FRONTEND</span>
+                </div>
+            </div>
         </section>
 
-        <section id="projects" class="hidden">
-            <h2>My Projects</h2>
-            <div class="project-grid">
-
-                <div class="project-card">
-                    <img src="images/clarityspend-cover.png" alt="ClaritySpend Project Image">
-                    <h3>ClaritySpend: AI-Powered Expense Tracker</h3>
-                    <p>A full-stack finance app (Java/Spring, JS) to auto-categorize 1,000+ CSV transactions, saving users hours.</p>
-                    <div class="project-tech">
-                        <span>Java</span>
-                        <span>Spring Boot</span>
-                        <span>Python</span>
-                        <span>scikit-learn</span>
-                        <span>SQL</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="link-button"><i class="fa-brands fa-github"></i> GitHub</a>
-                        <a href="#" class="link-button"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+        <section id="projects">
+            <h2 class="section-title">PROJECT_TELEMETRY</h2>
+            
+            <div class="bento-grid">
+                <div class="bento-card large">
+                    <div class="card-overlay"></div>
+                    <img src="images/clarityspend-cover.png" alt="ClaritySpend" class="bg-img">
+                    <div class="content">
+                        <h3>CLARITY_SPEND</h3>
+                        <p>AI-Powered Expense Tracker (Java/Spring)</p>
+                        <div class="tech-stack">
+                            <span>JAVA</span><span>SQL</span><span>ML</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <img src="images/fitlytics-cover.png" alt="FitLytics Project Image">
-                    <h3>FitLytics: AI-Powered Wellness Platform</h3>
-                    <p>Re-architected a Python app into a scalable microservice to securely manage 3,000+ workout logs for 100+ users.</p>
-                    <div class="project-tech">
-                        <span>Java</span>
-                        <span>Spring Boot</span>
-                        <span>Python</span>
-                        <span>JavaScript</span>
-                        <span>SQL</span>
+                <div class="bento-card">
+                    <div class="card-overlay"></div>
+                    <img src="images/fitlytics-cover.png" alt="FitLytics" class="bg-img">
+                    <div class="content">
+                        <h3>FITLYTICS</h3>
+                        <p>Microservice Wellness Platform</p>
+                        <div class="tech-stack">
+                            <span>PYTHON</span><span>MICROSERVICES</span>
+                        </div>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="link-button"><i class="fa-brands fa-github"></i> GitHub</a>
-                        <a href="#" class="link-button"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                </div>
+
+                <div class="bento-card trophy">
+                    <div class="card-overlay"></div>
+                    <div class="content center-content">
+                        <i class="fa-solid fa-trophy trophy-icon"></i>
+                        <h3>P1 | GDSC HACK</h3>
+                        <p>1st Place - BizInsights AI</p>
+                    </div>
+                </div>
+
+                <div class="bento-card trophy">
+                    <div class="card-overlay"></div>
+                    <div class="content center-content">
+                        <i class="fa-solid fa-shield-halved trophy-icon"></i>
+                        <h3>P1 | CYBER HACK</h3>
+                        <p>Delhi Police Hackathon Winner</p>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <section id="achievements" class="hidden">
-            <div class="checkered-flag"></div>
-            <h2>Achievements & Hackathons</h2>
-            <div class="achievement-grid">
+
+        <section id="experience" class="grid-section">
+            <div class="hud-panel full-width">
+                <div class="panel-header">
+                    <span>LAP_HISTORY // EXPERIENCE_LOG</span>
+                    <i class="fa-solid fa-stopwatch"></i>
+                </div>
                 
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fa-solid fa-trophy"></i>
-                        <span>Podium P1</span>
+                <div class="timeline-container">
+                    <div class="lap-row">
+                        <div class="sector-time purple">SECTOR 3</div> <div class="lap-data">
+                            <h3>SOFTWARE ENGINEER INTERN</h3>
+                            <span class="team-name">HSBC TECHNOLOGY</span>
+                            <p class="lap-details">Optimizing legacy Java systems. Implemented Spring Batch for high-volume transaction processing.</p>
+                        </div>
+                        <div class="lap-meta">
+                            <span>CURRENT</span>
+                            <span>PUNE, IN</span>
+                        </div>
                     </div>
-                    <div class="achievement-content">
-                        <h3>GDSC Tech-A-Thon 3.0</h3>
-                        <p>Led the design of "BizInsights," an AI-powered business planning platform. Secured 1st place among 10 teams.</p>
+
+                    <div class="lap-row">
+                        <div class="sector-time green">SECTOR 2</div> <div class="lap-data">
+                            <h3>R&D LEAD DEVELOPER</h3>
+                            <span class="team-name">CARBON_TAG PROJECT</span>
+                            <p class="lap-details">Co-authored research paper on Carbon Footprint tracking. Built proof-of-concept using Python & Pandas.</p>
+                        </div>
+                        <div class="lap-meta">
+                            <span>NOV 2024</span>
+                            <span>REMOTE</span>
+                        </div>
+                    </div>
+
+                    <div class="lap-row">
+                        <div class="sector-time yellow">SECTOR 1</div> <div class="lap-data">
+                            <h3>COMPUTER SCIENCE ENG.</h3>
+                            <span class="team-name">UNIVERSITY</span>
+                            <p class="lap-details">Specializing in Data Structures, Algorithms, and System Design. Maintaining 8.5+ CGPA.</p>
+                        </div>
+                        <div class="lap-meta">
+                            <span>2021 - 2025</span>
+                            <span>DELHI</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fa-solid fa-trophy"></i>
-                        <span>Podium P1</span>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>Delhi Police (West) Hackathon '24</h3>
-                        <p>Spearheaded "Trojan.AI" malware-detection extension. Achieved 95% threat-identification accuracy and secured 1st place out of 15 teams.</p>
-                    </div>
-                </div>
-
             </div>
         </section>
 
+        <section id="skills" class="grid-section reversed">
+            <div class="tech-visual">
+                <div class="spinning-circle-container">
+                    <div class="circle-outer"></div>
+                    <div class="circle-inner"></div>
+                    <span class="rpm-text">MAX_RPM</span>
+                </div>
+            </div>
 
-        <section id="skills" class="hidden">
-            <h2>Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div><i class="fa-brands fa-java"></i> Java</div>
-                <div><i class="fa-solid fa-leaf"></i> Spring Boot</div>
-                <div><i class="fa-brands fa-python"></i> Python</div>
-                <div><i class="fa-brands fa-js"></i> JavaScript</div>
-                <div><i class="fa-brands fa-html5"></i> HTML5</div>
-                <div><i class="fa-brands fa-css3-alt"></i> CSS3</div>
-                <div><i class="fa-solid fa-database"></i> SQL</div>
-                <div><i class="fa-brands fa-git-alt"></i> Git</div>
-                <div><i class="fa-brands fa-github"></i> GitHub</div>
-                <div><i class="fa-brands fa-figma"></i> Figma</div>
+            <div class="hud-panel">
+                <div class="panel-header">
+                    <span>CAR_SETUP // TECHNICAL_SPECS</span>
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+
+                <div class="specs-grid">
+                    <div class="spec-group">
+                        <h4 class="spec-title">ENGINE_CORE (JAVA)</h4>
+                        <div class="rpm-bar-container">
+                            <span class="label">SPRING BOOT</span>
+                            <div class="rpm-track"><div class="rpm-fill" style="width: 90%"></div></div>
+                        </div>
+                        <div class="rpm-bar-container">
+                            <span class="label">DSA / LOGIC</span>
+                            <div class="rpm-track"><div class="rpm-fill" style="width: 85%"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="spec-group">
+                        <h4 class="spec-title">AERODYNAMICS (FRONTEND)</h4>
+                        <div class="rpm-bar-container">
+                            <span class="label">JAVASCRIPT (ES6+)</span>
+                            <div class="rpm-track"><div class="rpm-fill" style="width: 80%"></div></div>
+                        </div>
+                        <div class="rpm-bar-container">
+                            <span class="label">CSS3 / ANIMATIONS</span>
+                            <div class="rpm-track"><div class="rpm-fill" style="width: 75%"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="spec-group">
+                        <h4 class="spec-title">FUEL_SYSTEM (DATA)</h4>
+                        <div class="rpm-bar-container">
+                            <span class="label">SQL / POSTGRES</span>
+                            <div class="rpm-track"><div class="rpm-fill" style="width: 85%"></div></div>
+                        </div>
+                        <div class="rpm-bar-container">
+                            <span class="label">PYTHON / PANDAS</span>
+                            <div class="rpm-track"><div class="rpm-fill" style="width: 70%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-form" class="grid-section center-aligned">
+            <div class="hud-panel form-panel">
+                <div class="panel-header">
+                    <span>PIT_WALL // RADIO_CHECK</span>
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                
+                <form class="f1-form">
+                    <div class="form-group">
+                        <label>CALLSIGN (NAME)</label>
+                        <input type="text" placeholder="ENTER IDENTIFIER" required>
+                    </div>
+                    <div class="form-group">
+                        <label>FREQUENCY (EMAIL)</label>
+                        <input type="email" placeholder="ENTER FREQUENCY" required>
+                    </div>
+                    <div class="form-group">
+                        <label>TRANSMISSION (MESSAGE)</label>
+                        <textarea placeholder="AWAITING INPUT..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="f1-btn full-width">TRANSMIT DATA</button>
+                </form>
             </div>
         </section>
     </main>
 
     <footer id="contact">
-        <h2>Get In Touch</h2>
-        <p>I'm always open to discussing new projects and opportunities.</p>
-        <div class="contact-links">
-            <a href="mailto:guptashaurya2004@gmail.com" class="contact-button" target="_blank">
-                <i class="fa-solid fa-envelope"></i> Email Me
-            </a>
-            <a href="https://www.linkedin.com/in/shauryaguptaa" class="contact-icon" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://github.com/shauryaguptagit" class="contact-icon" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <div class="footer-hud">
+            <h3>INITIATE COMMUNICATION</h3>
+            <div class="socials">
+                <a href="mailto:guptashaurya2004@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <p class="copyright">SYSTEM STATUS: NOMINAL // &copy; 2025</p>
         </div>
-        <p class="copyright">&copy; 2025 Shaurya Gupta. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>

@@ -1,395 +1,329 @@
-/* --- 1. Global Setup, NEW Font Import & NEW Glow Variable --- */
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap');
-
+/* --- 1. SETUP & VARIABLES --- */
 :root {
-  --color-bg: #1a1a1a;
-  --color-surface: #2b2b2b;
-  --color-primary-gradient: linear-gradient(90deg, #4CAF50, #00d4ff);
-  --color-primary-glow: rgba(76, 175, 80, 0.5); 
-  --color-text: #f0f0f0;
-  --color-text-secondary: #a0a0a0;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --bg-dark: #0a0a0a;
+    --carbon-color: #111;
+    --f1-cyan: #00f0ff; /* Mercedes/Tech Cyan */
+    --f1-red: #ff0040;  /* Race Red */
+    --text-main: #eeeeee;
+    --text-dim: #888888;
+    
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Barlow Condensed', sans-serif;
+    --font-code: 'JetBrains Mono', monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Exo 2', sans-serif;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-}
-main { width: 100%; }
-section { padding: 60px 10%; }
-img { width: 100%; display: block; }
-
-/* --- 2. Gradient Headings --- */
-h1, h2, h3 {
-  background: var(--color-primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-  margin-bottom: 20px;
-}
-h1 { font-size: 3.5em; }
-h2 { font-size: 2.5em; text-align: center; }
-h3 { font-size: 1.4em; }
-
-p {
-  color: var(--color-text-secondary);
-  margin-bottom: 15px;
-}
-
-/* --- 3. Glass & Coder Nav Bar --- */
-header {
-  background-color: rgba(26, 26, 26, 0.7);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 10%;
-}
-.nav-logo {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1.8em;
-  font-weight: bold;
-  color: var(--color-text);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.nav-logo:hover { color: #4CAF50; }
-.nav-links a {
-  color: var(--color-text);
-  text-decoration: none;
-  margin-left: 25px;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-.nav-links a:hover {
-  background: var(--color-primary-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-/* --- 4. Typewriter Hero Section --- */
-.hero {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-}
-.hero h1 {
-  -webkit-text-fill-color: white;
-  text-fill-color: white;
-  font-size: 3.2em;
-}
-.typewriter {
-  background: var(--color-primary-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-.typewriter::after {
-  content: '|';
-  animation: blink 0.7s infinite;
-}
-@keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-.hero-bio {
-  max-width: 600px;
-  font-size: 1.1em;
-  margin-bottom: 30px;
-}
-
-/* ================================ */
-/* ===== FIXED CTA BUTTON ====== */
-/* ================================ */
-.cta-button {
-  display: inline-block;
-  background: var(--color-primary-gradient);
-  color: white;
-  /* Correct padding for a narrower button */
-  padding: 12px 20px; 
-  font-size: 1em;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 5px;
-  border: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* REMOVED fixed width and text-align */
-}
-
-.cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px var(--color-primary-glow);
-}
-
-/* --- 5. Project Section --- */
-#projects {
-  background-color: var(--color-surface);
-}
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-.project-card {
-  background-color: var(--color-bg);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--color-surface);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: #4CAF50;
-  box-shadow: 0 0 20px var(--color-primary-glow);
-}
-.project-card img {
-  height: 250px;
-  object-fit: cover;
-}
-.project-card h3 {
-  padding: 0 20px;
-  padding-top: 15px;
-}
-.project-card p {
-  padding: 0 20px;
-}
-.project-tech {
-  padding: 10px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.project-tech span {
-  background: var(--color-primary-gradient);
-  color: white;
-  padding: 4px 10px;
-  border-radius: 15px;
-  font-size: 0.8em;
-  font-weight: 700;
-}
-.project-links {
-  padding: 20px;
-  display: flex;
-  gap: 15px;
-}
-.link-button {
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 700;
-}
-.link-button:hover {
-  background: var(--color-primary-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-.link-button i {
-  margin-right: 5px;
-  background: none;
-  -webkit-text-fill-color: var(--color-text);
-  text-fill-color: var(--color-text);
-}
-.link-button:hover i {
-  -webkit-text-fill-color: #4CAF50;
-  text-fill-color: #4CAF50;
-}
-
-/* ================================= */
-/* ===== NEW ACHIEVEMENT STYLES ==== */
-/* ================================= */
-#achievements {
-    background-color: var(--color-bg);
-}
-
-/* NEW Checkered Flag Style */
-.checkered-flag {
-    width: 100px;
-    height: 10px;
-    background: 
-        linear-gradient(45deg, var(--color-surface) 25%, transparent 25%, transparent 75%, var(--color-surface) 75%, var(--color-surface)), 
-        linear-gradient(45deg, transparent 25%, var(--color-bg) 25%, var(--color-bg) 75%, transparent 75%, transparent);
+    background-color: var(--bg-dark);
+    /* CSS CARBON FIBER PATTERN */
+    background-image: 
+        linear-gradient(45deg, var(--carbon-color) 25%, transparent 25%, transparent 75%, var(--carbon-color) 75%, var(--carbon-color)),
+        linear-gradient(45deg, var(--carbon-color) 25%, transparent 25%, transparent 75%, var(--carbon-color) 75%, var(--carbon-color));
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
-    margin: 0 auto -10px auto; /* Pulls title up */
-    opacity: 0.5;
+    
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
 }
 
-.achievement-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* NEW Driver Card Style */
-.achievement-card {
-    background-color: var(--color-surface);
-    border-radius: 8px;
-    padding: 25px;
+/* --- 2. PRELOADER (5 RED LIGHTS) --- */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: #000;
+    z-index: 9999;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 25px;
-    border: 1px solid var(--color-surface);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1); /* Slide up effect */
+}
+.lights-container {
+    display: flex;
+    gap: 15px;
+    background: #222;
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 1px solid #444;
+}
+.light {
+    width: 40px; height: 40px;
+    background: #333;
+    border-radius: 50%;
+    transition: background 0.1s;
+}
+.light.active {
+    background: var(--f1-red);
+    box-shadow: 0 0 20px var(--f1-red);
+}
+.loader-text {
+    margin-top: 20px;
+    font-family: var(--font-code);
+    color: var(--f1-cyan);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
 }
 
-.achievement-card:hover {
-    transform: translateY(-5px);
-    border-color: #4CAF50;
-    box-shadow: 0 0 20px var(--color-primary-glow);
+/* --- 3. NAV & TYPOGRAPHY --- */
+header {
+    padding: 20px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
-
-.achievement-icon {
-    text-align: center;
-    flex-basis: 80px; /* Give it a fixed width */
-    flex-shrink: 0;
+.hud-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 15px 30px;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
 }
-
-.achievement-icon i {
-    font-size: 3em;
-    background: var(--color-primary-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    text-fill-color: transparent;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 5px;
+.nav-brand {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
 }
+.accent { color: var(--f1-cyan); }
 
-.achievement-icon span {
-    font-size: 1.2em;
-    font-weight: 700;
-    color: var(--color-text);
+.nav-items a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-family: var(--font-code);
+    margin-left: 20px;
+    font-size: 0.9rem;
+    transition: 0.3s;
 }
+.nav-items a:hover { color: var(--f1-cyan); text-shadow: 0 0 5px var(--f1-cyan); }
 
-.achievement-content {
-    flex-grow: 1;
+h1 {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
+.glitch-text { text-shadow: 2px 2px var(--f1-red), -2px -2px var(--f1-cyan); }
 
-.achievement-content h3 {
+.sub-head {
+    font-family: var(--font-code);
+    color: var(--f1-cyan);
+    letter-spacing: 2px;
     margin-bottom: 10px;
 }
-.achievement-content p {
-    margin-bottom: 0;
+.section-title {
+    font-family: var(--font-display);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, transparent, var(--f1-cyan), transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-
-/* --- 6. Skills Section --- */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+/* Audio Button */
+.audio-control {
+    position: fixed;
+    top: 20px; right: 20px;
+    z-index: 101; /* Above Nav */
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    color: var(--f1-red);
+    border: 1px solid var(--f1-red);
+    padding: 8px 15px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.8);
+    transition: 0.3s;
 }
-.skills-grid div {
-  background-color: var(--color-surface);
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.1em;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.skills-grid div:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px var(--color-primary-glow);
-}
-.skills-grid div i {
-  display: block;
-  font-size: 2.5em;
-  margin-bottom: 10px;
-  background: var(--color-primary-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
+.audio-control.active {
+    color: var(--f1-cyan);
+    border-color: var(--f1-cyan);
+    box-shadow: 0 0 10px var(--f1-cyan);
 }
 
-/* --- 7. Footer (Contact) Section --- */
-footer {
-  background-color: var(--color-surface);
-  text-align: center;
-  padding: 50px 10%;
-}
-.contact-links {
-  margin: 25px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-.contact-button {
-  background: var(--color-primary-gradient);
-  color: white;
-  padding: 12px 25px;
-  font-size: 1em;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 5px;
-  border: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.contact-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px var(--color-primary-glow);
-}
-.contact-button i { margin-right: 8px; }
-.contact-icon {
-  color: var(--color-text-secondary);
-  font-size: 2em;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-.contact-icon:hover {
-  color: #4CAF50;
-  transform: scale(1.1);
-}
-.copyright {
-  font-size: 0.9em;
-  color: var(--color-text-secondary);
-  margin-top: 30px;
-  margin-bottom: 0;
+/* --- 4. GRID SECTIONS & HUD PANELS --- */
+section { padding: 80px 5%; }
+
+.grid-section {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+    min-height: 90vh;
 }
 
-/* --- 8. Mobile Responsiveness --- */
+.hud-panel {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid var(--f1-cyan); 
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-code);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: var(--text-dim);
+}
+
+.stat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+.dot.backend { background: var(--f1-cyan); }
+.dot.ai { background: var(--f1-red); }
+.dot.frontend { background: #fff; }
+
+.cta-group { margin-top: 30px; display: flex; gap: 20px; }
+
+/* Buttons */
+.f1-btn {
+    background: var(--f1-cyan);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    transition: 0.3s;
+}
+.f1-btn:hover { background: #fff; box-shadow: 0 0 15px var(--f1-cyan); }
+.f1-btn.outline { background: transparent; color: var(--f1-cyan); border: 1px solid var(--f1-cyan); }
+
+/* --- 5. PROJECTS BENTO GRID --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 250px 250px;
+    gap: 20px;
+}
+.bento-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.bento-card.large { grid-column: span 2; }
+.bento-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--f1-cyan);
+    box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.3);
+}
+.card-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, #000, transparent);
+    z-index: 1;
+}
+.bento-card h3 { font-family: var(--font-display); z-index: 2; margin-bottom: 5px; position: relative; }
+.bento-card p { color: var(--text-dim); font-size: 0.9rem; z-index: 2; position: relative; }
+.bg-img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.4; transition: 0.4s;
+}
+.bento-card:hover .bg-img { opacity: 0.2; scale: 1.1; }
+
+.tech-stack { z-index: 2; position: relative; margin-top: 10px; }
+.tech-stack span {
+    font-size: 0.7rem; font-family: var(--font-code);
+    border: 1px solid #444; padding: 2px 6px; margin-right: 5px; color: var(--f1-cyan);
+}
+.center-content { text-align: center; width: 100%; z-index: 2; }
+.trophy-icon { font-size: 3rem; color: #ffd700; margin-bottom: 10px; }
+
+/* --- 6. EXPERIENCE SECTORS --- */
+.full-width { width: 100%; grid-column: span 2; }
+.timeline-container { display: flex; flex-direction: column; gap: 15px; }
+
+.lap-row {
+    display: grid; grid-template-columns: 120px 1fr 150px;
+    align-items: center; background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid #333; padding: 15px; transition: 0.3s ease;
+}
+.lap-row:hover { background: rgba(255, 255, 255, 0.08); transform: translateX(10px); }
+
+.sector-time {
+    font-family: var(--font-code); font-weight: 700; padding: 5px 10px;
+    text-align: center; clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+}
+.sector-time.purple { background: #b100e8; color: #fff; box-shadow: 0 0 10px #b100e8; }
+.sector-time.green { background: #00d2be; color: #000; }
+.sector-time.yellow { background: #ffd900; color: #000; }
+
+.lap-data { padding: 0 20px; }
+.lap-data h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 2px; }
+.team-name { font-family: var(--font-code); color: var(--f1-cyan); font-size: 0.8rem; letter-spacing: 1px; }
+.lap-details { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
+.lap-meta { text-align: right; font-family: var(--font-code); color: #666; font-size: 0.8rem; display: flex; flex-direction: column; }
+
+/* --- 7. SKILLS (RPM) --- */
+.reversed { direction: rtl; } 
+.reversed > * { direction: ltr; }
+.specs-grid { display: flex; flex-direction: column; gap: 25px; }
+.spec-title { font-family: var(--font-code); color: #666; border-bottom: 1px solid #333; margin-bottom: 10px; font-size: 0.8rem; }
+.rpm-bar-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.rpm-bar-container .label { font-family: var(--font-display); font-size: 0.9rem; width: 150px; }
+.rpm-track { flex-grow: 1; height: 8px; background: #222; border: 1px solid #444; transform: skewX(-20deg); overflow: hidden; }
+.rpm-fill { height: 100%; background: linear-gradient(90deg, transparent, var(--f1-cyan)); box-shadow: 0 0 10px var(--f1-cyan); width: 0%; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Visual */
+.tech-visual { display: flex; justify-content: center; align-items: center; }
+.spinning-circle-container { width: 200px; height: 200px; position: relative; display: flex; justify-content: center; align-items: center; }
+.circle-outer { position: absolute; width: 100%; height: 100%; border: 2px dashed #333; border-radius: 50%; animation: spin 10s linear infinite; }
+.circle-inner { position: absolute; width: 70%; height: 70%; border: 2px solid var(--f1-cyan); border-radius: 50%; border-top-color: transparent; animation: spin 2s linear infinite reverse; }
+.rpm-text { font-family: var(--font-code); color: var(--f1-cyan); font-weight: bold; animation: blink 0.5s infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes blink { 50% { opacity: 0.5; } }
+
+/* --- 8. FORM & FOOTER --- */
+.center-aligned { display: flex; justify-content: center; }
+.form-panel { width: 100%; max-width: 600px; }
+.f1-form { display: flex; flex-direction: column; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group label { font-family: var(--font-code); color: var(--f1-cyan); font-size: 0.7rem; }
+.form-group input, .form-group textarea { background: rgba(0,0,0,0.5); border: 1px solid #333; color: #fff; padding: 10px; font-family: var(--font-body); font-size: 1rem; outline: none; transition: 0.3s; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--f1-cyan); background: rgba(0, 240, 255, 0.05); }
+.f1-btn.full-width { width: 100%; text-align: center; margin-top: 10px; }
+
+footer { background: #000; padding: 50px 0; text-align: center; border-top: 2px solid #222; }
+.footer-hud h3 { font-family: var(--font-display); color: #fff; margin-bottom: 20px; }
+.socials { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+.socials a { color: #888; font-size: 1.5rem; transition: 0.3s; }
+.socials a:hover { color: var(--f1-cyan); transform: scale(1.1); }
+.copyright { font-family: var(--font-code); color: #444; font-size: 0.8rem; }
+
+/* --- MOBILE --- */
 @media (max-width: 768px) {
-  h1 { font-size: 2.5em; }
-  h2 { font-size: 2em; }
-  .hero { text-align: center; }
-  nav { flex-direction: column; gap: 10px; }
-  
-  .project-grid { grid-template-columns: 1fr; }
-  
-  /* Stack achievement card on mobile */
-  .achievement-card { flex-direction: column; text-align: center; }
-  
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
-  .contact-links { flex-direction: column; }
-}
-
-/* --- 9. Scroll Animation --- */
-.hidden {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    .grid-section { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+    .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .bento-card.large { grid-column: span 1; }
+    h1 { font-size: 2.5rem; }
+    .reversed { direction: ltr; } 
+    .reversed > * { direction: ltr; }
+    .lap-row { grid-template-columns: 1fr; gap: 10px; text-align: center; }
+    .lap-meta { text-align: center; flex-direction: row; justify-content: center; gap: 15px; }
+    .sector-time { width: 100px; margin: 0 auto; }
+    .nav-items { display: none; } /* Simplified mobile nav for now */
 }
