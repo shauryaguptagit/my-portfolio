@@ -47,7 +47,6 @@ body {
     transform: translate(-50%, -50%); z-index: 9998; pointer-events: none;
     transition: width 0.2s, height 0.2s, background-color 0.2s;
 }
-/* Magnet Effect */
 body.hovering #cursor-outline {
     width: 60px; height: 60px;
     background-color: rgba(0, 240, 255, 0.1); border-color: transparent;
@@ -83,22 +82,12 @@ header { padding: 20px 5%; position: sticky; top: 0; z-index: 100; }
 }
 .nav-brand { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; letter-spacing: 2px; }
 .accent { color: var(--f1-cyan); }
-
 .nav-items { display: flex; }
 .nav-items a {
     color: var(--text-dim); text-decoration: none; font-family: var(--font-code);
     margin-left: 20px; font-size: 0.9rem; transition: 0.3s;
 }
 .nav-items a:hover { color: var(--f1-cyan); text-shadow: 0 0 5px var(--f1-cyan); }
-
-h1 { font-family: var(--font-display); font-size: 4rem; line-height: 1; margin-bottom: 20px; text-transform: uppercase; }
-.glitch-text { text-shadow: 2px 2px var(--f1-red), -2px -2px var(--f1-cyan); }
-.sub-head { font-family: var(--font-code); color: var(--f1-cyan); letter-spacing: 2px; margin-bottom: 10px; }
-.section-title {
-    font-family: var(--font-display); text-align: center; margin-bottom: 40px; font-size: 2.5rem;
-    background: linear-gradient(90deg, transparent, var(--f1-cyan), transparent);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-}
 
 /* Audio Toggle */
 .audio-control {
@@ -109,12 +98,44 @@ h1 { font-family: var(--font-display); font-size: 4rem; line-height: 1; margin-b
 }
 .audio-control.active { color: var(--f1-cyan); border-color: var(--f1-cyan); box-shadow: 0 0 10px var(--f1-cyan); }
 
-/* --- 5. GRID & PANELS --- */
+/* --- 5. GRID SECTIONS (FIXED CONTAINER) --- */
 section { padding: 80px 5%; }
 .grid-section {
     display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px;
     align-items: center; min-height: 90vh;
 }
+
+/* HERO TEXT CONTAINER FIX */
+.hero-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 700px; /* Constraint width */
+    z-index: 10;
+    position: relative;
+    padding-right: 20px;
+}
+
+h1 { 
+    font-family: var(--font-display); 
+    /* Responsive Font Sizing */
+    font-size: clamp(3rem, 5vw, 5rem); 
+    line-height: 1.1; 
+    margin-bottom: 20px; 
+    text-transform: uppercase; 
+    overflow-wrap: break-word;
+}
+.glitch-text { text-shadow: 2px 2px var(--f1-red), -2px -2px var(--f1-cyan); }
+.sub-head { font-family: var(--font-code); color: var(--f1-cyan); letter-spacing: 2px; margin-bottom: 10px; }
+.mission-brief { max-width: 500px; line-height: 1.6; }
+
+.section-title {
+    font-family: var(--font-display); text-align: center; margin-bottom: 40px; font-size: 2.5rem;
+    background: linear-gradient(90deg, transparent, var(--f1-cyan), transparent);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* --- 6. HUD PANELS --- */
 .hud-panel {
     background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 2px solid var(--f1-cyan); backdrop-filter: blur(10px);
@@ -145,7 +166,7 @@ section { padding: 80px 5%; }
 .f1-btn:hover { background: #fff; box-shadow: 0 0 15px var(--f1-cyan); }
 .f1-btn.outline { background: transparent; color: var(--f1-cyan); border: 1px solid var(--f1-cyan); }
 
-/* --- 6. PROJECTS --- */
+/* --- 7. PROJECTS --- */
 .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 250px 250px; gap: 20px; }
 .bento-card {
     background: #1a1a1a; border: 1px solid #333; position: relative; overflow: hidden;
@@ -164,7 +185,7 @@ section { padding: 80px 5%; }
 .center-content { text-align: center; width: 100%; z-index: 2; }
 .trophy-icon { font-size: 3rem; color: #ffd700; margin-bottom: 10px; }
 
-/* --- 7. EXPERIENCE & SKILLS --- */
+/* --- 8. EXPERIENCE & SKILLS --- */
 .full-width { width: 100%; grid-column: span 2; }
 .timeline-container { display: flex; flex-direction: column; gap: 15px; }
 .lap-row {
@@ -190,12 +211,11 @@ section { padding: 80px 5%; }
 .rpm-track { flex-grow: 1; height: 8px; background: #222; border: 1px solid #444; transform: skewX(-20deg); overflow: hidden; }
 .rpm-fill { height: 100%; background: linear-gradient(90deg, transparent, var(--f1-cyan)); box-shadow: 0 0 10px var(--f1-cyan); width: 0%; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
 
-/* Floating 3D Model */
 .tech-visual { position: relative; height: 450px; display: flex; justify-content: center; align-items: center; }
 model-viewer.floating-model { width: 100%; height: 100%; background-color: transparent; --poster-color: transparent; transition: transform 0.3s ease; }
 .tech-visual:hover model-viewer.floating-model { transform: scale(1.05); }
 
-/* --- 8. FORM & FOOTER --- */
+/* --- 9. FORM & FOOTER --- */
 .center-aligned { display: flex; justify-content: center; }
 .form-panel { width: 100%; max-width: 600px; }
 .f1-form { display: flex; flex-direction: column; gap: 20px; }
@@ -212,7 +232,7 @@ footer { background: #000; padding: 50px 0; text-align: center; border-top: 2px 
 .socials a:hover { color: var(--f1-cyan); transform: scale(1.1); }
 .copyright { font-family: var(--font-code); color: #444; font-size: 0.8rem; }
 
-/* --- 9. MOBILE --- */
+/* --- 10. MOBILE --- */
 .mobile-toggle { display: none; font-size: 1.5rem; color: var(--f1-cyan); cursor: pointer; }
 @media (max-width: 768px) {
     #cursor-dot, #cursor-outline { display: none; } /* No cursor on mobile */
@@ -233,4 +253,7 @@ footer { background: #000; padding: 50px 0; text-align: center; border-top: 2px 
     }
     .nav-items.active { display: flex; }
     .nav-items a { display: block; margin: 15px 0; font-size: 1.2rem; }
+    
+    /* Ensure hero text doesn't overflow mobile */
+    .hero-content-wrapper { padding-right: 0; max-width: 100%; }
 }

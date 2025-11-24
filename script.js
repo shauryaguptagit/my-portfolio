@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ==========================================
-    // 1. F1 START SEQUENCE (PRELOADER)
-    // ==========================================
+    // 1. PRELOADER
     const lights = document.querySelectorAll('.light');
     const preloader = document.getElementById('preloader');
     let lightIndex = 0;
@@ -16,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(lightsOut, 1500);
         }
     }
-
     function lightsOut() {
         lights.forEach(l => l.classList.remove('active'));
         setTimeout(() => {
@@ -26,9 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     startSequence();
 
-    // ==========================================
-    // 2. VANILLA JS RADAR CHART
-    // ==========================================
+    // 2. RADAR CHART
     function drawRadarChart() {
         const canvas = document.getElementById('radarChart');
         if(!canvas) return;
@@ -45,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const angleStep = (Math.PI * 2) / count;
 
         ctx.clearRect(0, 0, width, height);
-
-        // Grid
         ctx.strokeStyle = '#333'; ctx.lineWidth = 1;
+        
+        // Grid
         for (let r = 0.2; r <= 1; r += 0.2) {
             ctx.beginPath();
             for (let i = 0; i < count; i++) {
@@ -59,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.closePath(); ctx.stroke();
         }
 
-        // Data Shape
+        // Data
         ctx.beginPath();
         const finalPoints = [];
         for (let i = 0; i < count; i++) {
@@ -86,9 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // 3. AUDIO ENGINE (ELECTRIC TUNED)
-    // ==========================================
+    // 3. AUDIO ENGINE (SUBTLE)
     const audioBtn = document.getElementById('audio-btn');
     let audioCtx; let oscillator; let gainNode; let isEngineOn = false;
 
@@ -113,21 +106,29 @@ document.addEventListener('DOMContentLoaded', () => {
         audioCtx = new AudioContext();
         oscillator = audioCtx.createOscillator();
         gainNode = audioCtx.createGain();
-        oscillator.type = 'sine'; oscillator.frequency.value = 120; 
+
+        // SUBTLE AUDIO SETTINGS
+        oscillator.type = 'triangle'; // Softer than sine
+        oscillator.frequency.value = 60; // 60Hz Sub-bass rumble
+        
+        // VOLUME: 0.8% (Barely there)
         gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.02, audioCtx.currentTime + 1); 
+        gainNode.gain.linearRampToValueAtTime(0.008, audioCtx.currentTime + 2); 
+
         oscillator.connect(gainNode); gainNode.connect(audioCtx.destination);
         oscillator.start();
+
         window.addEventListener('scroll', () => {
             if (isEngineOn && audioCtx && audioCtx.state === 'running') {
                 const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-                const newFreq = 120 + (scrollPct * 120); 
+                // Pitch shift 60Hz -> 90Hz (Very subtle rev)
+                const newFreq = 60 + (scrollPct * 30); 
                 oscillator.frequency.setTargetAtTime(newFreq, audioCtx.currentTime, 0.2);
             }
         });
     }
-    
-    // Hover Blips
+
+    // Blips (Slightly quieter too)
     const interactiveElements = document.querySelectorAll('a, button, .bento-card, .lap-row');
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -139,19 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(800, audioCtx.currentTime); 
-        osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.1); 
-        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(600, audioCtx.currentTime); 
+        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1); 
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime); // 2% volume
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1); 
         osc.connect(gain); gain.connect(audioCtx.destination);
         osc.start(); osc.stop(audioCtx.currentTime + 0.1);
     }
 
-    // ==========================================
-    // 4. UX UPGRADES (LENIS, CURSOR, GLITCH)
-    // ==========================================
-    
-    // A. LENIS SMOOTH SCROLL
+    // 4. UX (LENIS & CURSOR)
     const lenis = new Lenis({
         duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         direction: 'vertical', smooth: true, mouseMultiplier: 1, smoothTouch: false,
@@ -159,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
 
-    // B. PHYSICS CURSOR
     const cursorDot = document.getElementById('cursor-dot');
     const cursorOutline = document.getElementById('cursor-outline');
     let mouseX = 0; let mouseY = 0; let outlineX = 0; let outlineY = 0;
@@ -167,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX; mouseY = e.clientY;
         if(cursorDot) { cursorDot.style.left = `${mouseX}px`; cursorDot.style.top = `${mouseY}px`; }
-        
         const hoveredEl = document.elementFromPoint(mouseX, mouseY);
         const isClickable = hoveredEl?.closest('a, button, input, textarea, .bento-card');
         if (isClickable) document.body.classList.add('hovering');
@@ -182,11 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateCursor();
 
-    // C. HACKER TEXT DECRYPTION
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_#$";
     document.querySelectorAll("h1, h2, h3, .nav-items a").forEach(target => {
-        if(!target.dataset.value) target.dataset.value = target.innerText; // Fallback
-        
+        if(!target.dataset.value) target.dataset.value = target.innerText;
         target.addEventListener("mouseover", event => {
             let iteration = 0;
             clearInterval(event.target.interval);
@@ -202,9 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ==========================================
     // 5. MOBILE & ANIMATIONS
-    // ==========================================
     const menuBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
     if(menuBtn && navMenu) {
