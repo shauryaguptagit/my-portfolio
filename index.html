@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaurya Gupta | Telemetry Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Shaurya Gupta - Full Stack Engineer Telemetry Dashboard">
+    <title>Shaurya Gupta | Telemetry Portfolio</title>
+    
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,16 +33,23 @@
         <div class="loader-text">INITIALIZING SYSTEMS...</div>
     </div>
 
-    <div class="audio-control" id="audio-btn">
-        <i class="fa-solid fa-volume-xmark"></i> <span>ENGINE OFF</span>
-    </div>
-
     <header>
         <nav class="hud-nav">
             <div class="nav-brand">SG <span class="accent">//</span> DEV_01</div>
             
-            <div class="mobile-toggle" id="mobile-menu-btn">
-                <i class="fa-solid fa-bars"></i>
+            <div class="nav-controls">
+                
+                <div class="audio-control" id="audio-btn">
+                    <i class="fa-solid fa-volume-xmark"></i> <span class="desktop-only">ENGINE OFF</span>
+                </div>
+
+                <div class="theme-control" id="theme-btn">
+                    <i class="fa-solid fa-sun"></i>
+                </div>
+
+                <div class="mobile-toggle" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
             </div>
 
             <div class="nav-items" id="nav-menu">
@@ -57,7 +66,9 @@
         <section id="telemetry" class="grid-section">
             <div class="hero-content-wrapper">
                 <h4 class="sub-head">DRIVER: SHAURYA GUPTA</h4>
-                <h1 class="glitch-text" data-value="FULL STACK ENGINEER">FULL STACK<br>ENGINEER</h1>
+                <div class="title-container">
+                    <h1 class="glitch-text" data-value="FULL STACK ENGINEER">FULL STACK<br>ENGINEER</h1>
+                </div>
                 <p class="mission-brief">
                     Building high-performance Java/Spring architecture with AI precision.
                     <br>Current Status: <span class="status-live">READY TO RACE</span>
@@ -73,7 +84,9 @@
                     <span>DRIVER_STATS</span>
                     <i class="fa-solid fa-chart-pie"></i>
                 </div>
-                <canvas id="radarChart" width="400" height="400"></canvas>
+                <div class="canvas-wrapper">
+                    <canvas id="radarChart"></canvas>
+                </div>
                 <div class="stat-legend">
                     <span><span class="dot backend"></span>BACKEND</span>
                     <span><span class="dot ai"></span>AI / ML</span>
@@ -88,7 +101,7 @@
             <div class="bento-grid">
                 <div class="bento-card large">
                     <div class="card-overlay"></div>
-                    <img src="images/clarityspend-cover.png" alt="ClaritySpend" class="bg-img">
+                    <img src="https://placehold.co/800x400/111/00f0ff?text=ClaritySpend" alt="ClaritySpend" class="bg-img">
                     <div class="content">
                         <h3>CLARITY_SPEND</h3>
                         <p>AI-Powered Expense Tracker (Java/Spring)</p>
@@ -100,7 +113,7 @@
 
                 <div class="bento-card">
                     <div class="card-overlay"></div>
-                    <img src="images/fitlytics-cover.png" alt="FitLytics" class="bg-img">
+                    <img src="https://placehold.co/400x400/111/00f0ff?text=FitLytics" alt="FitLytics" class="bg-img">
                     <div class="content">
                         <h3>FITLYTICS</h3>
                         <p>Microservice Wellness Platform</p>
@@ -184,8 +197,8 @@
             <div class="tech-visual">
                 <model-viewer 
                     class="floating-model"
-                    src="images/f1_helmet_zhouguanyu_24.glb"
-                    alt="Zhou Guanyu F1 Helmet"
+                    src="https://models.readyplayer.me/64f02633092789d970d47326.glb" 
+                    alt="3D Avatar"
                     auto-rotate
                     camera-controls
                     shadow-intensity="2" 
@@ -275,8 +288,8 @@
             <h3>INITIATE COMMUNICATION</h3>
             <div class="socials">
                 <a href="mailto:guptashaurya2004@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/shauryaguptaa"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/shauryaguptagit"><i class="fa-brands fa-github"></i></a>
             </div>
             <p class="copyright">SYSTEM STATUS: NOMINAL // &copy; 2025</p>
         </div>

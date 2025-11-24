@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. PRELOADER
     const lights = document.querySelectorAll('.light');
     const preloader = document.getElementById('preloader');
     let lightIndex = 0;
@@ -9,11 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lightIndex < 5) {
             lights[lightIndex].classList.add('active');
             lightIndex++;
-            setTimeout(startSequence, 800); 
+            setTimeout(startSequence, 600); 
         } else {
-            setTimeout(lightsOut, 1500);
+            setTimeout(lightsOut, 1000);
         }
     }
+
     function lightsOut() {
         lights.forEach(l => l.classList.remove('active'));
         setTimeout(() => {
@@ -23,16 +23,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     startSequence();
 
-    // 2. RADAR CHART
+    // --- CHART LOGIC WITH THEME SUPPORT ---
     function drawRadarChart() {
         const canvas = document.getElementById('radarChart');
         if(!canvas) return;
+        
+        // Fetch current theme colors from CSS variables
+        const styles = getComputedStyle(document.body);
+        const gridColor = styles.getPropertyValue('--chart-grid').trim();
+        const textColor = styles.getPropertyValue('--chart-text').trim();
+        const accentColor = styles.getPropertyValue('--f1-cyan').trim();
+        
+        // Make canvas DPI crisp
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        
         const ctx = canvas.getContext('2d');
-        const width = canvas.width;
-        const height = canvas.height;
+        ctx.scale(dpr, dpr); // Normalize scale
+        
+        const width = rect.width;
+        const height = rect.height;
         const centerX = width / 2;
         const centerY = height / 2;
-        const radius = 120;
+        const radius = Math.min(width, height) / 3; 
+
         const data = { 'JAVA': 0.95, 'SPRING': 0.9, 'PYTHON': 0.85, 'SQL': 0.8, 'JS': 0.75, 'AI/ML': 0.8 };
         const keys = Object.keys(data);
         const values = Object.values(data);
@@ -40,9 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const angleStep = (Math.PI * 2) / count;
 
         ctx.clearRect(0, 0, width, height);
-        ctx.strokeStyle = '#333'; ctx.lineWidth = 1;
         
-        // Grid
+        // Draw Grid with Theme Color
+        ctx.strokeStyle = gridColor; ctx.lineWidth = 1;
+        
         for (let r = 0.2; r <= 1; r += 0.2) {
             ctx.beginPath();
             for (let i = 0; i < count; i++) {
@@ -54,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.closePath(); ctx.stroke();
         }
 
-        // Data
+        // Draw Data Shape
         ctx.beginPath();
         const finalPoints = [];
         for (let i = 0; i < count; i++) {
@@ -66,22 +83,63 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
         }
         ctx.closePath();
-        ctx.fillStyle = 'rgba(0, 240, 255, 0.2)'; ctx.fill();
-        ctx.strokeStyle = '#00f0ff'; ctx.lineWidth = 2; ctx.stroke();
+        
+        // Dynamic Fill Color based on accent
+        // Parse hex to rgba for transparency
+        ctx.fillStyle = hexToRgba(accentColor, 0.2); 
+        ctx.fill();
+        ctx.strokeStyle = accentColor; ctx.lineWidth = 2; ctx.stroke();
 
-        // Labels
-        ctx.fillStyle = '#fff'; ctx.font = '12px JetBrains Mono'; ctx.textAlign = 'center';
+        // Draw Labels
+        ctx.fillStyle = '#fff'; ctx.font = '11px JetBrains Mono'; ctx.textAlign = 'center';
         finalPoints.forEach((point, i) => {
             ctx.beginPath(); ctx.arc(point.x, point.y, 4, 0, Math.PI * 2);
-            ctx.fillStyle = '#00f0ff'; ctx.fill();
+            ctx.fillStyle = accentColor; ctx.fill();
             const angle = i * angleStep - Math.PI / 2;
-            const labelX = centerX + Math.cos(angle) * (radius + 25);
-            const labelY = centerY + Math.sin(angle) * (radius + 25);
-            ctx.fillStyle = '#888'; ctx.fillText(keys[i], labelX, labelY);
+            const labelRadius = radius + 25; 
+            const labelX = centerX + Math.cos(angle) * labelRadius;
+            const labelY = centerY + Math.sin(angle) * labelRadius;
+            ctx.fillStyle = textColor; ctx.fillText(keys[i], labelX, labelY);
         });
     }
 
-    // 3. AUDIO ENGINE (SUBTLE)
+    // Helper to convert hex to rgba
+    function hexToRgba(hex, alpha) {
+        let r = 0, g = 0, b = 0;
+        if (hex.length == 4) {
+            r = "0x" + hex[1] + hex[1]; g = "0x" + hex[2] + hex[2]; b = "0x" + hex[3] + hex[3];
+        } else if (hex.length == 7) {
+            r = "0x" + hex[1] + hex[2]; g = "0x" + hex[3] + hex[4]; b = "0x" + hex[5] + hex[6];
+        }
+        return "rgba(" + +r + "," + +g + "," + +b + "," + alpha + ")";
+    }
+
+    // Redraw chart on resize
+    window.addEventListener('resize', drawRadarChart);
+
+
+    // --- THEME TOGGLE LOGIC ---
+    const themeBtn = document.getElementById('theme-btn');
+    if(themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const icon = themeBtn.querySelector('i');
+            
+            if(document.body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+            // Redraw chart to match new theme colors
+            drawRadarChart();
+            if (isEngineOn && audioCtx) playBlip();
+        });
+    }
+
+
+    // --- AUDIO ENGINE ---
     const audioBtn = document.getElementById('audio-btn');
     let audioCtx; let oscillator; let gainNode; let isEngineOn = false;
 
@@ -90,12 +148,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleEngine() {
         if (!isEngineOn) {
             initAudio();
-            audioBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i> <span>ENGINE ON</span>';
+            const span = audioBtn.querySelector('span');
+            if(span) span.innerText = "ENGINE ON";
+            audioBtn.querySelector('i').className = "fa-solid fa-volume-high";
             audioBtn.classList.add('active');
             isEngineOn = true;
         } else {
             if (audioCtx) { audioCtx.close(); audioCtx = null; }
-            audioBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> <span>ENGINE OFF</span>';
+            const span = audioBtn.querySelector('span');
+            if(span) span.innerText = "ENGINE OFF";
+            audioBtn.querySelector('i').className = "fa-solid fa-volume-xmark";
             audioBtn.classList.remove('active');
             isEngineOn = false;
         }
@@ -107,11 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
         oscillator = audioCtx.createOscillator();
         gainNode = audioCtx.createGain();
 
-        // SUBTLE AUDIO SETTINGS
-        oscillator.type = 'triangle'; // Softer than sine
-        oscillator.frequency.value = 60; // 60Hz Sub-bass rumble
+        oscillator.type = 'triangle'; 
+        oscillator.frequency.value = 60; 
         
-        // VOLUME: 0.8% (Barely there)
         gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
         gainNode.gain.linearRampToValueAtTime(0.008, audioCtx.currentTime + 2); 
 
@@ -121,15 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             if (isEngineOn && audioCtx && audioCtx.state === 'running') {
                 const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-                // Pitch shift 60Hz -> 90Hz (Very subtle rev)
                 const newFreq = 60 + (scrollPct * 30); 
                 oscillator.frequency.setTargetAtTime(newFreq, audioCtx.currentTime, 0.2);
             }
         });
     }
 
-    // Blips (Slightly quieter too)
-    const interactiveElements = document.querySelectorAll('a, button, .bento-card, .lap-row');
+    const interactiveElements = document.querySelectorAll('a, button, .bento-card, .lap-row, .theme-control');
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
             if (isEngineOn && audioCtx && audioCtx.state === 'running') playBlip();
@@ -142,13 +200,12 @@ document.addEventListener('DOMContentLoaded', () => {
         osc.type = 'sine';
         osc.frequency.setValueAtTime(600, audioCtx.currentTime); 
         osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1); 
-        gain.gain.setValueAtTime(0.02, audioCtx.currentTime); // 2% volume
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime); 
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1); 
         osc.connect(gain); gain.connect(audioCtx.destination);
         osc.start(); osc.stop(audioCtx.currentTime + 0.1);
     }
 
-    // 4. UX (LENIS & CURSOR)
     const lenis = new Lenis({
         duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         direction: 'vertical', smooth: true, mouseMultiplier: 1, smoothTouch: false,
@@ -160,22 +217,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorOutline = document.getElementById('cursor-outline');
     let mouseX = 0; let mouseY = 0; let outlineX = 0; let outlineY = 0;
 
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX; mouseY = e.clientY;
-        if(cursorDot) { cursorDot.style.left = `${mouseX}px`; cursorDot.style.top = `${mouseY}px`; }
-        const hoveredEl = document.elementFromPoint(mouseX, mouseY);
-        const isClickable = hoveredEl?.closest('a, button, input, textarea, .bento-card');
-        if (isClickable) document.body.classList.add('hovering');
-        else document.body.classList.remove('hovering');
-    });
+    if(cursorDot && cursorOutline) {
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            cursorDot.style.left = `${mouseX}px`; cursorDot.style.top = `${mouseY}px`;
+            
+            const hoveredEl = document.elementFromPoint(mouseX, mouseY);
+            const isClickable = hoveredEl?.closest('a, button, input, textarea, .bento-card, .control-btn');
+            if (isClickable) document.body.classList.add('hovering');
+            else document.body.classList.remove('hovering');
+        });
 
-    function animateCursor() {
-        outlineX += (mouseX - outlineX) * 0.15;
-        outlineY += (mouseY - outlineY) * 0.15;
-        if(cursorOutline) { cursorOutline.style.left = `${outlineX}px`; cursorOutline.style.top = `${outlineY}px`; }
-        requestAnimationFrame(animateCursor);
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.2; 
+            outlineY += (mouseY - outlineY) * 0.2;
+            cursorOutline.style.left = `${outlineX}px`; cursorOutline.style.top = `${outlineY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
     }
-    animateCursor();
 
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_#$";
     document.querySelectorAll("h1, h2, h3, .nav-items a").forEach(target => {
@@ -190,12 +250,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         return letters[Math.floor(Math.random() * 26)];
                     }).join("");
                 if(iteration >= event.target.dataset.value.length) clearInterval(event.target.interval);
-                iteration += 1 / 3;
-            }, 30);
+                
+                iteration += 1 / 2; 
+            }, 20); 
         });
     });
 
-    // 5. MOBILE & ANIMATIONS
     const menuBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
     if(menuBtn && navMenu) {
