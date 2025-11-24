@@ -11,8 +11,14 @@
     
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script> 
 </head>
 <body>
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
 
     <div id="preloader">
         <div class="lights-container">
@@ -38,11 +44,11 @@
             </div>
 
             <div class="nav-items" id="nav-menu">
-                <a href="#telemetry">TELEMETRY</a>
-                <a href="#projects">PROJECTS</a>
-                <a href="#experience">HISTORY</a>
-                <a href="#skills">SPECS</a>
-                <a href="#contact-form">COMMS</a>
+                <a href="#telemetry" data-value="TELEMETRY">TELEMETRY</a>
+                <a href="#projects" data-value="PROJECTS">PROJECTS</a>
+                <a href="#experience" data-value="HISTORY">HISTORY</a>
+                <a href="#skills" data-value="SPECS">SPECS</a>
+                <a href="#contact-form" data-value="COMMS">COMMS</a>
             </div>
         </nav>
     </header>
@@ -51,7 +57,7 @@
         <section id="telemetry" class="grid-section">
             <div class="hero-text">
                 <h4 class="sub-head">DRIVER: SHAURYA GUPTA</h4>
-                <h1 class="glitch-text">FULL STACK<br>ENGINEER</h1>
+                <h1 class="glitch-text" data-value="FULL STACK ENGINEER">FULL STACK<br>ENGINEER</h1>
                 <p class="mission-brief">
                     Building high-performance Java/Spring architecture with AI precision.
                     <br>Current Status: <span class="status-live">READY TO RACE</span>
@@ -77,7 +83,7 @@
         </section>
 
         <section id="projects">
-            <h2 class="section-title">PROJECT_TELEMETRY</h2>
+            <h2 class="section-title" data-value="PROJECT_TELEMETRY">PROJECT_TELEMETRY</h2>
             
             <div class="bento-grid">
                 <div class="bento-card large">
@@ -133,7 +139,8 @@
                 
                 <div class="timeline-container">
                     <div class="lap-row">
-                        <div class="sector-time purple">SECTOR 3</div> <div class="lap-data">
+                        <div class="sector-time purple">SECTOR 3</div>
+                        <div class="lap-data">
                             <h3>SOFTWARE ENGINEER INTERN</h3>
                             <span class="team-name">HSBC TECHNOLOGY</span>
                             <p class="lap-details">Optimizing legacy Java systems. Implemented Spring Batch for high-volume transaction processing.</p>
@@ -145,7 +152,8 @@
                     </div>
 
                     <div class="lap-row">
-                        <div class="sector-time green">SECTOR 2</div> <div class="lap-data">
+                        <div class="sector-time green">SECTOR 2</div>
+                        <div class="lap-data">
                             <h3>R&D LEAD DEVELOPER</h3>
                             <span class="team-name">CARBON_TAG PROJECT</span>
                             <p class="lap-details">Co-authored research paper on Carbon Footprint tracking. Built proof-of-concept using Python & Pandas.</p>
@@ -157,7 +165,8 @@
                     </div>
 
                     <div class="lap-row">
-                        <div class="sector-time yellow">SECTOR 1</div> <div class="lap-data">
+                        <div class="sector-time yellow">SECTOR 1</div>
+                        <div class="lap-data">
                             <h3>COMPUTER SCIENCE ENG.</h3>
                             <span class="team-name">UNIVERSITY</span>
                             <p class="lap-details">Specializing in Data Structures, Algorithms, and System Design. Maintaining 8.5+ CGPA.</p>
@@ -173,8 +182,6 @@
 
         <section id="skills" class="grid-section reversed">
             <div class="tech-visual">
-                <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-
                 <model-viewer 
                     class="floating-model"
                     src="images/f1_helmet_zhouguanyu_24.glb"
