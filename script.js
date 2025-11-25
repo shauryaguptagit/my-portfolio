@@ -238,7 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_#$";
-    document.querySelectorAll("h1, h2, h3, .nav-items a").forEach(target => {
+    
+    // CHANGED: Target .hack-text class to preserve <br> in headers
+    document.querySelectorAll(".hack-text").forEach(target => {
         if(!target.dataset.value) target.dataset.value = target.innerText;
         target.addEventListener("mouseover", event => {
             let iteration = 0;

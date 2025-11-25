@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Shaurya Gupta - Full Stack Engineer Telemetry Dashboard">
-    <title>Shaurya Gupta | Telemetry Portfolio</title>
+    <title>Shaurya Gupta | Telemetry Dashboard</title>
     
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,26 +38,23 @@
             <div class="nav-brand">SG <span class="accent">//</span> DEV_01</div>
             
             <div class="nav-controls">
-                
                 <div class="audio-control" id="audio-btn">
                     <i class="fa-solid fa-volume-xmark"></i> <span class="desktop-only">ENGINE OFF</span>
                 </div>
-
                 <div class="theme-control" id="theme-btn">
                     <i class="fa-solid fa-sun"></i>
                 </div>
-
                 <div class="mobile-toggle" id="mobile-menu-btn">
                     <i class="fa-solid fa-bars"></i>
                 </div>
             </div>
 
             <div class="nav-items" id="nav-menu">
-                <a href="#telemetry" data-value="TELEMETRY">TELEMETRY</a>
-                <a href="#projects" data-value="PROJECTS">PROJECTS</a>
-                <a href="#experience" data-value="HISTORY">HISTORY</a>
-                <a href="#skills" data-value="SPECS">SPECS</a>
-                <a href="#contact-form" data-value="COMMS">COMMS</a>
+                <a href="#telemetry" class="hack-text" data-value="TELEMETRY">TELEMETRY</a>
+                <a href="#projects" class="hack-text" data-value="PROJECTS">PROJECTS</a>
+                <a href="#experience" class="hack-text" data-value="HISTORY">HISTORY</a>
+                <a href="#skills" class="hack-text" data-value="SPECS">SPECS</a>
+                <a href="#contact-form" class="hack-text" data-value="COMMS">COMMS</a>
             </div>
         </nav>
     </header>
@@ -66,9 +63,14 @@
         <section id="telemetry" class="grid-section">
             <div class="hero-content-wrapper">
                 <h4 class="sub-head">DRIVER: SHAURYA GUPTA</h4>
+                
                 <div class="title-container">
-                    <h1 class="glitch-text" data-value="FULL STACK ENGINEER">FULL STACK<br>ENGINEER</h1>
+                    <h1 class="glitch-text">
+                        <span class="hack-text" data-value="FULL STACK">FULL STACK</span><br>
+                        <span class="hack-text" data-value="ENGINEER">ENGINEER</span>
+                    </h1>
                 </div>
+
                 <p class="mission-brief">
                     Building high-performance Java/Spring architecture with AI precision.
                     <br>Current Status: <span class="status-live">READY TO RACE</span>
@@ -96,33 +98,26 @@
         </section>
 
         <section id="projects">
-            <h2 class="section-title" data-value="PROJECT_TELEMETRY">PROJECT_TELEMETRY</h2>
-            
+            <h2 class="section-title hack-text" data-value="PROJECT_TELEMETRY">PROJECT_TELEMETRY</h2>
             <div class="bento-grid">
                 <div class="bento-card large">
                     <div class="card-overlay"></div>
-                    <img src="https://placehold.co/800x400/111/00f0ff?text=ClaritySpend" alt="ClaritySpend" class="bg-img">
+                    <img src="images/clarityspend-cover.png" alt="ClaritySpend" class="bg-img">
                     <div class="content">
                         <h3>CLARITY_SPEND</h3>
                         <p>AI-Powered Expense Tracker (Java/Spring)</p>
-                        <div class="tech-stack">
-                            <span>JAVA</span><span>SQL</span><span>ML</span>
-                        </div>
+                        <div class="tech-stack"><span>JAVA</span><span>SQL</span><span>ML</span></div>
                     </div>
                 </div>
-
                 <div class="bento-card">
                     <div class="card-overlay"></div>
-                    <img src="https://placehold.co/400x400/111/00f0ff?text=FitLytics" alt="FitLytics" class="bg-img">
+                    <img src="images/fitlytics-cover.png" alt="FitLytics" class="bg-img">
                     <div class="content">
                         <h3>FITLYTICS</h3>
                         <p>Microservice Wellness Platform</p>
-                        <div class="tech-stack">
-                            <span>PYTHON</span><span>MICROSERVICES</span>
-                        </div>
+                        <div class="tech-stack"><span>PYTHON</span><span>MICROSERVICES</span></div>
                     </div>
                 </div>
-
                 <div class="bento-card trophy">
                     <div class="card-overlay"></div>
                     <div class="content center-content">
@@ -131,7 +126,6 @@
                         <p>1st Place - BizInsights AI</p>
                     </div>
                 </div>
-
                 <div class="bento-card trophy">
                     <div class="card-overlay"></div>
                     <div class="content center-content">
@@ -149,7 +143,6 @@
                     <span>LAP_HISTORY // EXPERIENCE_LOG</span>
                     <i class="fa-solid fa-stopwatch"></i>
                 </div>
-                
                 <div class="timeline-container">
                     <div class="lap-row">
                         <div class="sector-time purple">SECTOR 3</div>
@@ -158,12 +151,8 @@
                             <span class="team-name">HSBC TECHNOLOGY</span>
                             <p class="lap-details">Optimizing legacy Java systems. Implemented Spring Batch for high-volume transaction processing.</p>
                         </div>
-                        <div class="lap-meta">
-                            <span>CURRENT</span>
-                            <span>PUNE, IN</span>
-                        </div>
+                        <div class="lap-meta"><span>CURRENT</span><span>PUNE, IN</span></div>
                     </div>
-
                     <div class="lap-row">
                         <div class="sector-time green">SECTOR 2</div>
                         <div class="lap-data">
@@ -171,12 +160,8 @@
                             <span class="team-name">CARBON_TAG PROJECT</span>
                             <p class="lap-details">Co-authored research paper on Carbon Footprint tracking. Built proof-of-concept using Python & Pandas.</p>
                         </div>
-                        <div class="lap-meta">
-                            <span>NOV 2024</span>
-                            <span>REMOTE</span>
-                        </div>
+                        <div class="lap-meta"><span>NOV 2024</span><span>REMOTE</span></div>
                     </div>
-
                     <div class="lap-row">
                         <div class="sector-time yellow">SECTOR 1</div>
                         <div class="lap-data">
@@ -184,10 +169,7 @@
                             <span class="team-name">UNIVERSITY</span>
                             <p class="lap-details">Specializing in Data Structures, Algorithms, and System Design. Maintaining 8.5+ CGPA.</p>
                         </div>
-                        <div class="lap-meta">
-                            <span>2021 - 2025</span>
-                            <span>DELHI</span>
-                        </div>
+                        <div class="lap-meta"><span>2021 - 2025</span><span>DELHI</span></div>
                     </div>
                 </div>
             </div>
@@ -197,17 +179,17 @@
             <div class="tech-visual">
                 <model-viewer 
                     class="floating-model"
-                    src="https://models.readyplayer.me/64f02633092789d970d47326.glb" 
-                    alt="3D Avatar"
+                    src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb"
+                    alt="Sci-Fi Helmet"
                     auto-rotate
                     camera-controls
-                    shadow-intensity="2" 
+                    shadow-intensity="1" 
                     environment-image="neutral"
-                    exposure="1.2"
-                    shadow-softness="0.5"
+                    exposure="0.8"
+                    shadow-softness="1"
                     interaction-prompt="none"
                     auto-rotate-delay="0"
-                    rotation-per-second="30deg">
+                    rotation-per-second="20deg">
                 </model-viewer>
             </div>
 
@@ -216,7 +198,6 @@
                     <span>CAR_SETUP // TECHNICAL_SPECS</span>
                     <i class="fa-solid fa-microchip"></i>
                 </div>
-
                 <div class="specs-grid">
                     <div class="spec-group">
                         <h4 class="spec-title">ENGINE_CORE (JAVA)</h4>
@@ -229,7 +210,6 @@
                             <div class="rpm-track"><div class="rpm-fill" style="width: 85%"></div></div>
                         </div>
                     </div>
-
                     <div class="spec-group">
                         <h4 class="spec-title">AERODYNAMICS (FRONTEND)</h4>
                         <div class="rpm-bar-container">
@@ -241,7 +221,6 @@
                             <div class="rpm-track"><div class="rpm-fill" style="width: 75%"></div></div>
                         </div>
                     </div>
-
                     <div class="spec-group">
                         <h4 class="spec-title">FUEL_SYSTEM (DATA)</h4>
                         <div class="rpm-bar-container">
@@ -263,7 +242,6 @@
                     <span>PIT_WALL // RADIO_CHECK</span>
                     <i class="fa-solid fa-headset"></i>
                 </div>
-                
                 <form class="f1-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
                         <label>CALLSIGN (NAME)</label>

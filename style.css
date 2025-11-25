@@ -28,7 +28,7 @@ body.light-mode {
     --panel-bg: rgba(255, 255, 255, 0.85);
     --panel-border: rgba(0, 0, 0, 0.1);
     
-    --f1-cyan: #008cff; /* Darker blue for light mode visibility */
+    --f1-cyan: #008cff; 
     --f1-red: #d00030;
     
     --text-main: #1a1a1a;
@@ -144,10 +144,8 @@ section { padding: 80px 5%; scroll-margin-top: 80px; }
     max-width: 100%; z-index: 10; position: relative;
 }
 
-/* The Container ensures space is reserved */
 .title-container {
     width: 100%;
-    min-height: 5.5rem; /* Reserve vertical space */
     margin-bottom: 20px;
 }
 
@@ -157,12 +155,12 @@ h1 {
     line-height: 1.05; 
     text-transform: uppercase; 
     overflow-wrap: normal;
-    
-    /* FIX FOR JITTER: */
-    display: inline-block;
-    min-width: 100%; /* Force it to take full width */
-    white-space: nowrap; /* Prevent wrapping changes */
     color: var(--text-main);
+}
+
+/* The class for the animated text spans */
+.hack-text {
+    display: inline-block;
 }
 
 .glitch-text { text-shadow: 3px 3px var(--f1-red), -3px -3px var(--f1-cyan); }
@@ -284,7 +282,7 @@ footer { background: var(--bg-dark); padding: 60px 0; text-align: center; border
     .grid-section { gap: 30px; }
     .bento-grid { grid-template-columns: repeat(2, 1fr); }
     .bento-card.large { grid-column: span 2; }
-    h1 { white-space: normal; } /* Allow wrapping on tablets/mobile where spacing is tight */
+    h1 { white-space: normal; }
     .title-container { min-height: auto; }
 }
 
@@ -319,8 +317,5 @@ footer { background: var(--bg-dark); padding: 60px 0; text-align: center; border
     .mobile-toggle { display: block; }
     .desktop-only { display: none; }
     
-    .title-container h1 {
-        white-space: normal;
-        font-size: 2.8rem;
-    }
+    h1 { font-size: 2.8rem; }
 }
