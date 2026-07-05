@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const centerY = height / 2;
         const radius = Math.min(width, height) / 3; 
 
-        const data = { 'JAVA': 0.95, 'SPRING': 0.9, 'PYTHON': 0.85, 'SQL': 0.8, 'JS': 0.75, 'AI/ML': 0.8 };
+        const data = { 'SQL': 0.9, 'PYTHON': 0.85, 'EXCEL': 0.8, 'DASHBOARDS': 0.85, 'AI/LLM': 0.8, 'UX/FIGMA': 0.7 };
         const keys = Object.keys(data);
         const values = Object.values(data);
         const count = keys.length;
